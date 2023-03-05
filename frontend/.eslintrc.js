@@ -26,6 +26,7 @@ module.exports = {
         },
       },
     ],
+    'import/no-extraneous-dependencies': 'off',
     'import/no-cycle': 0,
     'no-console': 0,
     'react/prop-types': 0,
