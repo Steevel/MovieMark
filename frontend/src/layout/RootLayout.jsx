@@ -6,23 +6,21 @@ import Sidebar from '../components/Sidebar';
 
 function RootLayout() {
   return (
-    <Grid templateColumns="repeat(12, 1fr)" bg="gray.50" h="100vh">
-      <Show breakpoint="(min-width: 429px)">
+    <Grid templateColumns="repeat(6, 1fr)" bg="gray.50" h="100vh">
+      <Show breakpoint="(min-width: 480px)">
         <GridItem
           as="aside"
-          colSpan={{ base: 3, lg: 3, xl: 2 }}
-          bg="gray.800"
+          colSpan={{ base: 6, sm: 2, lg: 1, xl: 1 }}
+          bg="gray.900"
           minHeight={{ lg: '100vh' }}
-          p={{ base: '10px', lg: '20px' }}
-
+          p={{ base: '10px', lg: '10px' }}
         >
           <Sidebar />
         </GridItem>
       </Show>
       <GridItem
         as="main"
-        colSpan={{ base: 6, lg: 4, xl: 5 }}
-        p="40px"
+        colSpan={{ base: 6, sm: 4, lg: 5, xl: 5 }}
       >
         <Navbar />
         <Outlet />
