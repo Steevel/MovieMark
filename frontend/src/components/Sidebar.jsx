@@ -1,32 +1,13 @@
-import { Box, Image, List, ListItem } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
+import { useGetGenresQuery } from '../services/TMDB';
 
-const data = {
-  genre: [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Comedy',
-    'Crime',
-    'Documentary',
-    'Drama',
-    'Family',
-    'Fantasy',
-    'History',
-    'Horror',
-    'Music',
-    'Mystery',
-    'Romance',
-    'Science Friction',
-    'TV Movie',
-    'Thriller',
-    'War',
-    'Western',
-  ],
-};
 function Sidebar() {
+  const { data, isFetching } = useGetGenresQuery();
+  console.log('isFetching', isFetching);
+  console.log(data);
+
   return (
     <>
       <Box boxSize="sm" w="100%" h="max-content">
@@ -51,19 +32,33 @@ function Sidebar() {
           },
         }}
       >
-        {data.genre.map((genreName) => (
-          <NavLink to="/">
-            <ListItem
-              _hover={{ bg: 'red.600' }}
-              p={1.5}
-              color="gray.50"
-              fontSize={18}
-            >
-              {/*<ListIcon as="" />*/}
-              {genreName}
-            </ListItem>
-          </NavLink>
-        ))}
+        {
+          isFetching ? (
+            <Flex h="80vh" w="100%" alignItems="center" justifyContent="center">
+              <Spinner
+                thickness="4px"
+                speed="1s"
+                emptyColor="gray.500"
+                color="white"
+                size="xl"
+              />
+            </Flex>
+
+          ) : (data.genres.map(({ id, name }) => (
+            <NavLink to="/" key={id}>
+              <ListItem
+                _hover={{ bg: 'red.600' }}
+                p={1.5}
+                color="gray.50"
+                fontSize={18}
+              >
+                {/*<ListIcon as="" />*/}
+                {name}
+              </ListItem>
+            </NavLink>
+          )))
+
+        }
       </List>
     </>
   );
