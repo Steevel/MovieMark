@@ -1,8 +1,7 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
+import { Navbar, Sidebar } from '../components/index';
 
 function RootLayout() {
   return (
@@ -10,17 +9,17 @@ function RootLayout() {
       <Show breakpoint="(min-width: 480px)">
         <GridItem
           as="aside"
-          colSpan={{ base: 6, sm: 2, lg: 1, xl: 1 }}
+          colSpan={{ base: 6, sm: 1 }}
           bg="gray.900"
           minHeight={{ lg: '100vh' }}
-          p={{ base: '10px', lg: '10px' }}
+          p={{ base: '10px' }}
         >
           <Sidebar />
         </GridItem>
       </Show>
       <GridItem
         as="main"
-        colSpan={{ base: 6, sm: 4, lg: 5, xl: 5 }}
+        colSpan={{ base: 6, sm: 5 }}
       >
         <Navbar />
         <Outlet />

@@ -1,13 +1,13 @@
 import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
 import { useGetGenresQuery } from '../services/TMDB';
 
 function Sidebar() {
   const { data, isFetching } = useGetGenresQuery();
-  console.log('isFetching', isFetching);
-  console.log(data);
-
+  const [activeGenre, setActiveGenre] = useState(0);
+  console.log('side bar rendered');
   return (
     <>
       <Box boxSize="sm" w="100%" h="max-content">
@@ -45,9 +45,14 @@ function Sidebar() {
             </Flex>
 
           ) : (data.genres.map(({ id, name }) => (
-            <NavLink to="/" key={id}>
+            <NavLink
+              to="/"
+              key={id}
+              onClick={() => setActiveGenre(id)}
+            >
               <ListItem
                 _hover={{ bg: 'red.600' }}
+                sx={activeGenre === id ? { bg: 'red.600' } : (null)}
                 p={1.5}
                 color="gray.50"
                 fontSize={18}
