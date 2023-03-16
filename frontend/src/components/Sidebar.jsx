@@ -1,10 +1,7 @@
 import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
-import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
-import { useGetGenresQuery } from '../services/TMDB';
 import { useGetGenresQuery } from '../services/TMDB';
 
 function Sidebar() {
