@@ -7,7 +7,7 @@ import { useGetGenresQuery } from '../services/TMDB';
 function Sidebar() {
   const { data, isFetching } = useGetGenresQuery();
   const [activeGenre, setActiveGenre] = useState(0);
-  console.log('side bar rendered');
+
   return (
     <>
       <Box boxSize="sm" w="100%" h="max-content">
