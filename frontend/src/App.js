@@ -1,13 +1,13 @@
 import './App.css';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import RootLayout from './layout/RootLayout';
 import HomePage from './pages/HomePage';
+import { MovieList } from './components';
 
 //router and routes
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<HomePage />} />
+    <Route path="/" element={<HomePage />}>
+      <Route index element={<MovieList />} />
     </Route>,
   ),
 );

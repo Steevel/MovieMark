@@ -1,7 +1,7 @@
-import React from 'react';
+import RootLayout from '../layout/RootLayout';
 
 function HomePage() {
-  return <div>HomePage</div>;
+  return (<RootLayout />);
 }
 
 export default HomePage;
