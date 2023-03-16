@@ -1,12 +1,20 @@
 import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
+import { selectedGenre } from '../features/movieSlice';
 import { useGetGenresQuery } from '../services/TMDB';
 
 function Sidebar() {
+  const dispatch = useDispatch();
   const { data, isFetching } = useGetGenresQuery();
-  const [activeGenre, setActiveGenre] = useState(0);
+  const [activeGenre, setActiveGenre] = useState(28);
+
+  const handleClick = (id) => {
+    setActiveGenre(id);
+    dispatch(selectedGenre(id));
+  };
 
   return (
     <>
@@ -48,7 +56,7 @@ function Sidebar() {
             <NavLink
               to="/"
               key={id}
-              onClick={() => setActiveGenre(id)}
+              onClick={() => handleClick(id)}
             >
               <ListItem
                 _hover={{ bg: 'red.600' }}

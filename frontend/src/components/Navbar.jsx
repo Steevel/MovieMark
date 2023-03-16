@@ -7,6 +7,7 @@ import {
   Flex,
   Show,
   useDisclosure,
+  Box,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
@@ -27,7 +28,7 @@ function Navbar() {
       fontSize="2xl"
     >
       <Show breakpoint="(max-width: 480px)">
-        <FaBars ref={menuRef} onClick={onOpen} />
+        <Box ref={menuRef} onClick={onOpen}><FaBars /></Box>
 
         <Drawer
           isOpen={isOpen}
