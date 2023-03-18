@@ -22,7 +22,7 @@ function Navbar() {
       as="nav"
       bg="gray.700"
       color="gray.50"
-      h="16"
+      h="8vh"
       p="10px"
       alignItems="center"
       fontSize="2xl"
