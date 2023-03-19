@@ -13,11 +13,8 @@ function RootLayout() {
           bg="gray.900"
           minHeight={{ lg: '100vh' }}
           p={{ base: '10px' }}
-          sx={{
-            'box-shadow': '3px 0px 5px 0px rgba(0,0,0,0.34)',
-            '-webkit-box-shadow': '3px 0px 5px 0px rgba(0,0,0,0.34)',
-            '-moz-box-shadow': '3px 0px 5px 0px rgba(0,0,0,0.34)',
-          }}
+          borderRightWidth="2px"
+          borderColor="gray.500"
         >
           <Sidebar />
         </GridItem>

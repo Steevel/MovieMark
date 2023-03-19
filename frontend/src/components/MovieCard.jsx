@@ -8,7 +8,7 @@ function MovieCard({ movie }) {
         maxW="320px"
         maxH="300px"
         borderRadius="md"
-        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : 'https://fakeimg.pl/200x300/'}
       />
 
       <Flex mt={1} direction="column">

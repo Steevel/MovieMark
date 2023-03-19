@@ -70,39 +70,6 @@ function Sidebar() {
               </ListItem>
             </NavLink>
           )))
-
-        }
-        {
-          isFetching ? (
-            <Flex h="80vh" w="100%" alignItems="center" justifyContent="center">
-              <Spinner
-                thickness="4px"
-                speed="1s"
-                emptyColor="gray.500"
-                color="white"
-                size="xl"
-              />
-            </Flex>
-
-          ) : (data.genres.map(({ id, name }) => (
-            <NavLink
-              to="/"
-              key={id}
-              onClick={() => setActiveGenre(id)}
-            >
-              <ListItem
-                _hover={{ bg: 'red.600' }}
-                sx={activeGenre === id ? { bg: 'red.600' } : (null)}
-                p={1.5}
-                color="gray.50"
-                fontSize={18}
-              >
-                {/*<ListIcon as="" />*/}
-                {name}
-              </ListItem>
-            </NavLink>
-          )))
-
         }
       </List>
     </>

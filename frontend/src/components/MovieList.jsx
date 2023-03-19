@@ -29,7 +29,7 @@ function MovieList() {
       justifyContent="center"
       columnGap={2}
       rowGap={4}
-      p={1}
+      p={2}
     >
       {/*<h1>Current Genre id: {genreId.currentGenreId}</h1>*/}
 
