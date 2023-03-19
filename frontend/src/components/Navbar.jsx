@@ -8,23 +8,30 @@ import {
   Show,
   useDisclosure,
   Box,
+  Text,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaMoon, FaSun } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
 import { Sidebar } from '.';
+import { toggleDarkMode } from '../features/darkModeSlice';
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.mode.darkMode);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const menuRef = useRef();
 
   return (
     <Flex
       as="nav"
-      bg="gray.700"
+      bg={darkMode ? 'gray.700' : 'red.600'}
       color="gray.50"
       h="8vh"
       p="10px"
       alignItems="center"
+      justifyContent="space-between"
       fontSize="2xl"
     >
       <Show breakpoint="(max-width: 480px)">
@@ -36,20 +43,21 @@ function Navbar() {
           size="xs"
           onClose={onClose}
           finalFocusRef={menuRef}
-          bg="gray.900"
+          bg={darkMode ? 'gray.900' : 'white'}
         >
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton color="gray.500" />
             <DrawerBody
-              bg="gray.900"
+              bg={darkMode ? 'gray.900' : 'white'}
             >
               <Sidebar />
             </DrawerBody>
           </DrawerContent>
         </Drawer>
       </Show>
-      <span>Navbar</span>
+      <Text>Navbar</Text>
+      <Box onClick={() => dispatch(toggleDarkMode())}>{darkMode ? <FaSun /> : <FaMoon />}</Box>
     </Flex>
   );
 }

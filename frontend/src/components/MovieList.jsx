@@ -4,12 +4,13 @@ import { useGetMoviesQuery } from '../services/TMDB';
 import { MovieCard } from './index';
 
 function MovieList() {
+  const darkMode = useSelector((state) => state.mode.darkMode);
   const genreId = useSelector((state) => state.currentGenre);
   const { data, isFetching } = useGetMoviesQuery(genreId);
 
   return (
     <Flex
-      bg="gray.900"
+      bg={darkMode ? 'gray.900' : 'gray.50'}
       w="100%"
       h="92vh"
       overflowY="scroll"

@@ -1,6 +1,6 @@
 import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
 import { selectedGenre } from '../features/movieSlice';
@@ -8,6 +8,8 @@ import { useGetGenresQuery } from '../services/TMDB';
 
 function Sidebar() {
   const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.mode.darkMode);
+
   const { data, isFetching } = useGetGenresQuery();
   const [activeGenre, setActiveGenre] = useState(28);
 
@@ -19,7 +21,7 @@ function Sidebar() {
   return (
     <>
       <Box boxSize="sm" w="100%" h="max-content">
-        <Image src={logo} alt="Moviemark Logo" mt={6} mb={4} />
+        <Image src={logo} alt="Moviemark Logo" mt={1} mb={4} />
       </Box>
       <List
         color="white"
@@ -35,7 +37,7 @@ function Sidebar() {
             width: '6px',
           },
           '&::-webkit-scrollbar-thumb': {
-            background: 'gray.600',
+            background: 'gray.500',
             borderRadius: '24px',
           },
         }}
@@ -59,10 +61,10 @@ function Sidebar() {
               onClick={() => handleClick(id)}
             >
               <ListItem
-                _hover={{ bg: 'red.600' }}
-                sx={activeGenre === id ? { bg: 'red.600' } : (null)}
+                _hover={darkMode ? { bg: 'red.400', color: 'white' } : { bg: 'red.100', color: 'black' }}
+                sx={activeGenre === id ? { bg: 'red.600', color: 'white' } : (null)}
                 p={1.5}
-                color="gray.50"
+                color={darkMode ? 'white' : 'black'}
                 fontSize={18}
               >
                 {/*<ListIcon as="" />*/}

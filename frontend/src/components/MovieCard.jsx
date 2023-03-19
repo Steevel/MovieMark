@@ -1,7 +1,10 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { MdStar } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 function MovieCard({ movie }) {
+  const darkMode = useSelector((state) => state.mode.darkMode);
+
   return (
     <Flex direction="column" justifyContent="space-between">
       <Image
@@ -16,7 +19,7 @@ function MovieCard({ movie }) {
           mt={2}
           maxW={48}
           noOfLines={2}
-          color="white"
+          color={darkMode ? 'gray.50' : 'black'}
           fontSize="xl"
           fontWeight="semibold"
           lineHeight="short"
@@ -29,11 +32,11 @@ function MovieCard({ movie }) {
       <Flex align="center" justify="space-between">
         <Flex align="center">
           <Box as={MdStar} color="orange.400" />
-          <Box ml={0.5} fontSize="sm" color="gray.400">
+          <Box ml={0.5} fontSize="sm" color={darkMode ? 'gray.400' : 'gray.600'}>
             <strong>{movie.vote_average}</strong>/10 ({movie.vote_count})
           </Box>
         </Flex>
-        <Text color="gray.500">2022</Text>
+        <Text color={darkMode ? 'gray.500' : 'gray.600'}>{movie.release_date.slice(0, 4)}</Text>
       </Flex>
     </Flex>
   );

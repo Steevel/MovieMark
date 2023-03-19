@@ -1,20 +1,22 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
-import React from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Navbar, Sidebar } from '../components/index';
 
 function RootLayout() {
+  const darkMode = useSelector((state) => state.mode.darkMode);
+
   return (
     <Grid templateColumns="repeat(6, 1fr)" bg="gray.50" h="100vh">
       <Show breakpoint="(min-width: 480px)">
         <GridItem
           as="aside"
           colSpan={{ base: 6, sm: 1 }}
-          bg="gray.900"
+          bg={darkMode ? 'gray.900' : 'gray.50'}
           minHeight={{ lg: '100vh' }}
           p={{ base: '10px' }}
           borderRightWidth="2px"
-          borderColor="gray.500"
+          borderColor={darkMode ? 'gray.600' : 'gray.400'}
         >
           <Sidebar />
         </GridItem>
