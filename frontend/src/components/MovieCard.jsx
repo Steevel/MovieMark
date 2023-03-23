@@ -40,7 +40,7 @@ function MovieCard({ movie }) {
               <strong>{movie.vote_average}</strong>/10 ({movie.vote_count})
             </Box>
           </Flex>
-          <Text color={darkMode ? 'gray.500' : 'gray.600'}>{movie.release_date.slice(0, 4)}</Text>
+          <Text color={darkMode ? 'gray.500' : 'gray.600'}>{movie.release_date?.slice(0, 4)}</Text>
         </Flex>
       </Link>
     </Flex>
