@@ -1,7 +1,7 @@
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../services/TMDB';
-import { MovieCard } from './index';
+import { CustomSpinner, MovieCard } from './index';
 
 function MovieList() {
   const darkMode = useSelector((state) => state.mode.darkMode);
@@ -37,13 +37,7 @@ function MovieList() {
       {isFetching
         ? (
           <Flex h="92vh" w="100%" alignItems="center" justifyContent="center">
-            <Spinner
-              thickness="4px"
-              speed="1s"
-              emptyColor="gray.500"
-              color="white"
-              size="xl"
-            />
+            <CustomSpinner />
           </Flex>
         )
         : (data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />))}

@@ -1,10 +1,11 @@
-import { Box, Flex, Image, List, ListItem, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Image, List, ListItem } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/MMLogo SVG.svg';
 import { selectedGenre } from '../features/movieSlice';
 import { useGetGenresQuery } from '../services/TMDB';
+import { CustomSpinner } from './index';
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -45,13 +46,7 @@ function Sidebar() {
         {
           isFetching ? (
             <Flex h="80vh" w="100%" alignItems="center" justifyContent="center">
-              <Spinner
-                thickness="4px"
-                speed="1s"
-                emptyColor="gray.500"
-                color="white"
-                size="xl"
-              />
+              <CustomSpinner />
             </Flex>
 
           ) : (data.genres.map(({ id, name }) => (
