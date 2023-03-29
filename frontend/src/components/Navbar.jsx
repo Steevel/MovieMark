@@ -56,7 +56,7 @@ function Navbar() {
           </DrawerContent>
         </Drawer>
       </Show>
-      <Text>Moviemark - Navbar</Text>
+      <Text />
       <Box onClick={() => dispatch(toggleDarkMode())}>{darkMode ? <FaSun /> : <FaMoon />}</Box>
     </Flex>
   );
