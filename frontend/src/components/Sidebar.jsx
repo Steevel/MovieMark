@@ -7,7 +7,7 @@ import { selectedGenre } from '../features/movieSlice';
 import { useGetGenresQuery } from '../services/TMDB';
 import { CustomSpinner } from './index';
 
-function Sidebar() {
+function Sidebar(props) {
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state.mode.darkMode);
 
@@ -15,8 +15,10 @@ function Sidebar() {
   const [activeGenre, setActiveGenre] = useState(28);
 
   const handleClick = (id) => {
+    const { onClose = () => { } } = props;
     setActiveGenre(id);
     dispatch(selectedGenre(id));
+    onClose();
   };
 
   return (

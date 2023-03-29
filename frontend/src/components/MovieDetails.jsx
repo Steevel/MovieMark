@@ -117,8 +117,8 @@ function MovieDetails() {
                         }}
                       >
                         {similarMovies.results.map((movie) => (
-                          <SwiperSlide>
-                            <MovieCard key={movie.id} movie={movie} />
+                          <SwiperSlide key={movie.id}>
+                            <MovieCard movie={movie} />
                           </SwiperSlide>
                         ))}
 

@@ -51,7 +51,7 @@ function Navbar() {
             <DrawerBody
               bg={darkMode ? 'gray.900' : 'white'}
             >
-              <Sidebar />
+              <Sidebar onClose={onClose} />
             </DrawerBody>
           </DrawerContent>
         </Drawer>
