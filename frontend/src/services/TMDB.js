@@ -31,7 +31,14 @@ export const tmdbApi = createApi({
         method: 'GET',
       }),
     }),
+
+    //Get Similar Movies
+    getSimilarMovies: builder.query({
+      query: (id) => ({
+        url: `movie/${id}/similar?api_key=${tmdbApiKey}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery } = tmdbApi;
+export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery, useGetSimilarMoviesQuery } = tmdbApi;

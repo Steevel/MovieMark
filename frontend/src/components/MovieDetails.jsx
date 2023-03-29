@@ -1,13 +1,19 @@
 import { Box, CircularProgress, CircularProgressLabel, Container, Flex, Image, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useGetMovieQuery } from '../services/TMDB';
-import { CustomSpinner } from './index';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useGetMovieQuery, useGetSimilarMoviesQuery } from '../services/TMDB';
+import { CustomSpinner, MovieCard } from './index';
+
+//Import Swiper styles
+//import 'swiper/swiper.min.css';
+import 'swiper/swiper-bundle.min.css';
 
 function MovieDetails() {
   const { id } = useParams();
   const darkMode = useSelector((state) => state.mode.darkMode);
   const { data, isFetching } = useGetMovieQuery(id);
+  const { data: similarMovies, isFetching: isLoading } = useGetSimilarMoviesQuery(id);
 
   return (
     <Flex
@@ -36,7 +42,7 @@ function MovieDetails() {
               />
             </Flex>
             <Box>
-              <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>{data.title}
+              <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>{data.title}
               </Text>
 
               <Box>
@@ -81,6 +87,7 @@ function MovieDetails() {
           {data.videos?.results?.length > 0
             && (
               <Box mt={3}>
+                <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>Trailer</Text>
                 {
                   data.videos?.results?.filter((video) => video.type === 'Trailer')
                     .map((video) => (
@@ -91,6 +98,37 @@ function MovieDetails() {
                 }
               </Box>
             )}
+
+          {/*Similar Movies*/}
+          {isLoading
+            ? (<CustomSpinner />)
+            : (
+              <Box>
+                <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>You may also like: </Text>
+                {
+                  similarMovies.results.length > 0 && (
+                    <Flex my={3}>
+                      <Swiper
+                        breakpoints={{
+                          320: { slidesPerView: 2, spaceBetween: 10 },
+                          480: { slidesPerView: 3, spaceBetween: 10 },
+                          768: { slidesPerView: 3, spaceBetween: 10 },
+                          1024: { slidesPerView: 6, spaceBetween: 10 },
+                        }}
+                      >
+                        {similarMovies.results.map((movie) => (
+                          <SwiperSlide>
+                            <MovieCard key={movie.id} movie={movie} />
+                          </SwiperSlide>
+                        ))}
+
+                      </Swiper>
+                    </Flex>
+                  )
+                }
+              </Box>
+            )}
+
         </>
       )}
 
