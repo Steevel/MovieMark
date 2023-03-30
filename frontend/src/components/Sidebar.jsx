@@ -23,14 +23,11 @@ function Sidebar(props) {
 
   return (
     <>
-      <Box boxSize="sm" w="100%" h="max-content">
+      <Box boxSize="sm" w="100%" h="10vh">
         <Image src={logo} alt="Moviemark Logo" mt={1} mb={4} />
       </Box>
-      <List
-        color="white"
-        fontSize="1.2rem"
-        spacing={1}
-        maxHeight="82vh"
+      <Box
+        h="90%"
         overflowY="scroll"
         sx={{
           '::-webkit-scrollbar': {
@@ -45,32 +42,39 @@ function Sidebar(props) {
           },
         }}
       >
-        {
-          isFetching ? (
-            <Flex h="80vh" w="100%" alignItems="center" justifyContent="center">
-              <CustomSpinner />
-            </Flex>
+        <List
+          color="white"
+          fontSize="1.2rem"
+          spacing={1}
+        >
+          {
+            isFetching ? (
+              <Flex h="80vh" w="100%" alignItems="center" justifyContent="center">
+                <CustomSpinner />
+              </Flex>
 
-          ) : (data.genres.map(({ id, name }) => (
-            <NavLink
-              to="/"
-              key={id}
-              onClick={() => handleClick(id)}
-            >
-              <ListItem
-                _hover={darkMode ? { bg: 'red.400', color: 'white' } : { bg: 'red.100', color: 'black' }}
-                sx={activeGenre === id ? { bg: 'red.600', color: 'white' } : (null)}
-                p={1.5}
-                color={darkMode ? 'white' : 'black'}
-                fontSize={18}
+            ) : (data.genres.map(({ id, name }) => (
+              <NavLink
+                to="/"
+                key={id}
+                onClick={() => handleClick(id)}
               >
-                {/*<ListIcon as="" />*/}
-                {name}
-              </ListItem>
-            </NavLink>
-          )))
-        }
-      </List>
+                <ListItem
+                  _hover={darkMode ? { bg: 'red.400', color: 'white' } : { bg: 'red.100', color: 'black' }}
+                  sx={activeGenre === id ? { bg: 'red.600', color: 'white' } : (null)}
+                  p={1.5}
+                  color={darkMode ? 'white' : 'black'}
+                  fontSize={18}
+                >
+                  {/*<ListIcon as="" />*/}
+                  {name}
+                </ListItem>
+              </NavLink>
+            )))
+          }
+        </List>
+      </Box>
+
     </>
   );
 }
