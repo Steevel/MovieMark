@@ -104,26 +104,34 @@ function MovieDetails() {
             ? (<CustomSpinner />)
             : (
               <Box>
-                <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>You may also like: </Text>
                 {
                   similarMovies.results.length > 0 && (
-                    <Flex my={3}>
-                      <Swiper
-                        breakpoints={{
-                          320: { slidesPerView: 2, spaceBetween: 10 },
-                          480: { slidesPerView: 3, spaceBetween: 10 },
-                          768: { slidesPerView: 3, spaceBetween: 10 },
-                          1024: { slidesPerView: 6, spaceBetween: 10 },
-                        }}
+                    <>
+                      <Text
+                        color={darkMode ? 'white' : 'black'}
+                        fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
                       >
-                        {similarMovies.results.map((movie) => (
-                          <SwiperSlide key={movie.id}>
-                            <MovieCard movie={movie} />
-                          </SwiperSlide>
-                        ))}
+                        You may also like:
+                      </Text>
+                      <Flex my={3}>
 
-                      </Swiper>
-                    </Flex>
+                        <Swiper
+                          breakpoints={{
+                            320: { slidesPerView: 2, spaceBetween: 10 },
+                            480: { slidesPerView: 3, spaceBetween: 10 },
+                            768: { slidesPerView: 3, spaceBetween: 10 },
+                            1024: { slidesPerView: 6, spaceBetween: 10 },
+                          }}
+                        >
+                          {similarMovies.results.map((movie) => (
+                            <SwiperSlide key={movie.id}>
+                              <MovieCard movie={movie} />
+                            </SwiperSlide>
+                          ))}
+
+                        </Swiper>
+                      </Flex>
+                    </>
                   )
                 }
               </Box>

@@ -8,12 +8,11 @@ import {
   Show,
   useDisclosure,
   Box,
-  Text,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { FaBars, FaMoon, FaSun } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { Sidebar } from '.';
+import { Sidebar, Search } from '.';
 import { toggleDarkMode } from '../features/darkModeSlice';
 
 function Navbar() {
@@ -56,7 +55,7 @@ function Navbar() {
           </DrawerContent>
         </Drawer>
       </Show>
-      <Text />
+      <Search darkMode={darkMode} />
       <Box onClick={() => dispatch(toggleDarkMode())}>{darkMode ? <FaSun /> : <FaMoon />}</Box>
     </Flex>
   );

@@ -13,6 +13,8 @@ function MovieCard({ movie }) {
       justifyContent="space-between"
       cursor="pointer"
       onClick={() => navigate(`/movie/${movie.id}`)}
+      maxH="400px"
+      maxW="320px"
     >
       <Image
         maxW="320px"
@@ -42,7 +44,7 @@ function MovieCard({ movie }) {
         <Flex align="center">
           <Box as={MdStar} color="orange.400" />
           <Box ml={0.5} fontSize="sm" color={darkMode ? 'gray.400' : 'gray.600'}>
-            <strong>{movie.vote_average.toFixed(1)}</strong>/10 ({movie.vote_count})
+            <strong>{movie.vote_average?.toFixed(1)}</strong>/10 ({movie.vote_count})
           </Box>
         </Flex>
         <Text color={darkMode ? 'gray.500' : 'gray.600'}>{movie.release_date?.slice(0, 4)}</Text>

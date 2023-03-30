@@ -1,12 +1,12 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../services/TMDB';
 import { CustomSpinner, MovieCard } from './index';
 
 function MovieList() {
   const darkMode = useSelector((state) => state.mode.darkMode);
-  const genreId = useSelector((state) => state.currentGenre);
-  const { data, isFetching } = useGetMoviesQuery(genreId);
+  const { currentGenreId, searchQuery } = useSelector((state) => state.currentGenre);
+  const { data, isFetching } = useGetMoviesQuery({ currentGenreId, searchQuery });
 
   return (
     <Flex
@@ -26,13 +26,8 @@ function MovieList() {
           borderRadius: '24px',
         },
       }}
-      flexWrap="wrap"
-      justifyContent="center"
-      columnGap={2}
-      rowGap={4}
       p={2}
     >
-      {/*<h1>Current Genre id: {genreId.currentGenreId}</h1>*/}
 
       {isFetching
         ? (
@@ -40,7 +35,21 @@ function MovieList() {
             <CustomSpinner />
           </Flex>
         )
-        : (data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />))}
+        : (
+          <Flex
+            flexWrap="wrap"
+            justifyContent="center"
+            w="100%"
+            columnGap={2}
+            rowGap={4}
+          >
+            {
+              data.results.length > 0
+                ? (data.results.map((movie) => <MovieCard key={movie.id} movie={movie} />))
+                : (<Text color={darkMode ? 'gray.50' : 'black'} fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>No Results found!</Text>)
+            }
+          </Flex>
+        )}
 
     </Flex>
   );
