@@ -24,7 +24,9 @@ function Sidebar(props) {
   return (
     <>
       <Box boxSize="sm" w="100%" h="10vh">
-        <Image src={logo} alt="Moviemark Logo" mt={1} mb={4} />
+        <NavLink to="/">
+          <Image src={logo} alt="Moviemark Logo" mt={1} mb={4} />
+        </NavLink>
       </Box>
       <Box
         h="90%"
