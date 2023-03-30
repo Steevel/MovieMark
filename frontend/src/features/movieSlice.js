@@ -5,6 +5,7 @@ export const movieSlice = createSlice({
   initialState: {
     currentGenreId: 28,
     searchQuery: '',
+    page: 1,
   },
   reducers: {
     selectedGenre: (prevState, action) => {
