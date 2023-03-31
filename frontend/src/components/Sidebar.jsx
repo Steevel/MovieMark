@@ -29,7 +29,7 @@ function Sidebar(props) {
         </NavLink>
       </Box>
       <Box
-        h="90%"
+        h="84vh"
         overflowY="scroll"
         sx={{
           '::-webkit-scrollbar': {

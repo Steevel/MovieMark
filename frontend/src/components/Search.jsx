@@ -1,4 +1,4 @@
-import { Box, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -22,25 +22,25 @@ function Search({ darkMode }) {
   };
 
   return (
-    <Box w={{ base: '80%', md: '60%', lg: '30%' }}>
-      <InputGroup p={{ base: 1, md: 0 }}>
+    <Box w={{ base: '80%', md: '60%', lg: '35%' }}>
+      <InputGroup size="sm">
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
           type="text"
           borderRadius="5px"
-          placeholder="Search..."
+          placeholder="Search any movie..."
           focusBorderColor="gray.50"
-          h={{ base: 8, md: 10 }}
           _placeholder={darkMode ? { color: 'gray.500' } : { color: 'gray.200' }}
           color={darkMode ? 'gray.300' : 'gray.50'}
         />
-        <InputRightElement
+        <InputLeftElement
           cursor="pointer"
+          color={darkMode ? 'gray.300' : 'gray.50'}
         >
           <FaSearch color={darkMode ? 'gray.300' : 'gray.50'} />
-        </InputRightElement>
+        </InputLeftElement>
       </InputGroup>
     </Box>
   );

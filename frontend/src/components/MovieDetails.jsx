@@ -1,4 +1,4 @@
-import { Box, CircularProgress, CircularProgressLabel, Container, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, CircularProgress, CircularProgressLabel, Flex, Image, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -42,43 +42,45 @@ function MovieDetails() {
               />
             </Flex>
             <Box>
-              <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>{data.title}
+              <Text color={darkMode ? 'gray.50' : 'black'} fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>{data.title}
               </Text>
 
               <Box>
-                <Text color={darkMode ? 'white' : 'black'} as="i">{data?.tagline}</Text>
+                <Text color={darkMode ? 'gray.50' : 'black'} as="i">{data?.tagline}</Text>
               </Box>
 
               <Flex gap={2} mt={2} flexWrap="wrap">
 
                 <CircularProgress value={Math.round(data.vote_average * 10)} trackColor="gray.500" color="green.400" size="30px">
-                  <CircularProgressLabel color={darkMode ? 'white' : 'black'} fontSize="x-small">{Math.round(data.vote_average * 10)}%</CircularProgressLabel>
+                  <CircularProgressLabel color={darkMode ? 'gray.50' : 'black'} fontSize="x-small">{Math.round(data.vote_average * 10)}%</CircularProgressLabel>
                 </CircularProgress>
 
                 {data.genres.map((genre) => (
                   <Box
                     as="span"
                     border="2px"
-                    borderColor={darkMode ? 'white' : 'gray.900'}
+                    borderColor={darkMode ? 'gray.50' : 'gray.900'}
                     borderRadius={22}
                     px={2}
                     pt={0.35}
                     key={genre.id}
-                  ><Text as="span" color={darkMode ? 'white' : 'black'}>{genre.name}</Text>
+                  ><Text as="span" color={darkMode ? 'gray.50' : 'black'}>{genre.name}</Text>
                   </Box>
                 ))}
               </Flex>
-              <Container p="0" maxW="50em">
-                <Text color={darkMode ? 'white' : 'black'} mt={3} mb={1}>{data.overview}</Text>
-              </Container>
-              <Box>
-                <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: 'lg', lg: 'xl' }}>
+              {/*<Container p="0" maxW="50em">*/}
+              <Text color={darkMode ? 'gray.50' : 'black'} mt={3} mb={2}>{data.overview}</Text>
+              {/*</Container>*/}
+              <Flex>
+                <Text mr={2} color={darkMode ? 'gray.400' : 'black'}>
                   Starring:
                 </Text>
-                {
-                  data.credits.cast.slice(0, 6).map((cast) => <Text key={cast.cast_id} color={darkMode ? 'white' : 'black'}>{cast.name}</Text>)
-                }
-              </Box>
+                <Box w="100%" noOfLines={[4, 6, 6]}>
+                  {
+                    data.credits.cast.map((cast) => <Text as="span" key={cast.cast_id} color={darkMode ? 'gray.50' : 'black'}>{cast.name}, </Text>)
+                  }
+                </Box>
+              </Flex>
             </Box>
 
           </Flex>
@@ -87,7 +89,7 @@ function MovieDetails() {
           {data.videos?.results?.length > 0
             && (
               <Box mt={3}>
-                <Text color={darkMode ? 'white' : 'black'} fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>Trailer</Text>
+                <Text color={darkMode ? 'gray.50' : 'black'} fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}>Trailer</Text>
                 {
                   data.videos?.results?.filter((video) => video.type === 'Trailer')
                     .map((video) => (
@@ -108,10 +110,10 @@ function MovieDetails() {
                   similarMovies.results.length > 0 && (
                     <>
                       <Text
-                        color={darkMode ? 'white' : 'black'}
+                        color={darkMode ? 'gray.50' : 'black'}
                         fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
                       >
-                        You may also like:
+                        You May Also Like
                       </Text>
                       <Flex my={3}>
 
