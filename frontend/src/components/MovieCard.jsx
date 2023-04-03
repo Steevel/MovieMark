@@ -15,6 +15,11 @@ function MovieCard({ movie }) {
       onClick={() => navigate(`/movie/${movie.id}`)}
       maxH="400px"
       maxW="320px"
+      _hover={{
+        transform: 'scale(1.05)',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-in-out',
+      }}
     >
       <Image
         maxW="320px"
